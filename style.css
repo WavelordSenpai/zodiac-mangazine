@@ -1,0 +1,41 @@
+body {
+  background: #111;
+  color: #eee;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 2em;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 2em;
+}
+
+button {
+  background: #ff00cc;
+  color: white;
+  border: none;
+  padding: 1em 2em;
+  font-size: 1.2em;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff00cc;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #ff66cc;
+}
+
+#output {
+  margin-top: 2em;
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #222;
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #444;
+  white-space: pre-wrap;
+}
