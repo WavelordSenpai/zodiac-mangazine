@@ -1,60 +1,56 @@
-const heroJourneySteps = [
-  "1. The Ordinary World",
-  "2. The Call to Adventure",
-  "3. Refusal of the Call",
-  "4. Meeting the Mentor",
-  "5. Crossing the First Threshold",
-  "6. Tests, Allies, and Enemies",
-  "7. Approach to the Inmost Cave",
-  "8. The Ordeal",
-  "9. Reward (Seizing the Sword)",
-  "10. The Road Back",
-  "11. Resurrection",
-  "12. Return with the Elixir"
-];
+const imageThemes = {
+  cyberzodiac: [
+    "https://i.imgur.com/0fx0byj.png",
+    "https://i.imgur.com/N9iRWYx.png",
+    "https://i.imgur.com/yD1Z0G5.png"
+  ],
+  tarotnoir: [
+    "https://i.imgur.com/d8VrCUX.png",
+    "https://i.imgur.com/yr7SZP0.png",
+    "https://i.imgur.com/I7oaKwU.png"
+  ],
+  occultidols: [
+    "https://i.imgur.com/4XZBghY.png",
+    "https://i.imgur.com/FmINaAd.png",
+    "https://i.imgur.com/GEikXn8.png"
+  ]
+};
 
-const archetypes = ["The Seer", "The Trickster", "The Warrior", "The Lost One", "The Oracle", "The Outcast"];
-const realms = ["Dreamscape", "The Infinite Library", "Shadow Nexus", "Sky Vault", "Soul Arena"];
-const objects = ["Mirror Blade", "Chrono Seed", "Eclipse Mask", "Serpent Scroll"];
+const dialogueLines = [
+  "I was born under the star of ruin...",
+  "Only the chosen may wield the Zodiac Flame!",
+  "This tarot... it's not just a card. It's a curse.",
+  "They told me I’d shine on stage. They didn’t say it’d be in hell.",
+  "Fate is a script — but I’m rewriting it in fire."
+];
 
 function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function generateStory() {
-  let story = "📖 **Zodiac Tale**\n\n";
+function generatePanel() {
+  const theme = document.getElementById("themeSelect").value;
+  const imgSrc = getRandom(imageThemes[theme]);
+  const line = getRandom(dialogueLines);
 
-  const hero = getRandom(archetypes);
-  const realm = getRandom(realms);
-  const item = getRandom(objects);
+  const panel = document.createElement("div");
+  panel.className = "manga-panel";
 
-  story += `Main Character: ${hero}\nSetting: ${realm}\nArtifact: ${item}\n\n🌌 Journey:\n\n`;
+  const img = document.createElement("img");
+  img.src = imgSrc;
 
-  heroJourneySteps.forEach((step, i) => {
-    story += `${step}: "${generateLine(hero, realm, item, i)}"\n\n`;
-  });
+  const bubble = document.createElement("div");
+  bubble.className = "speech-bubble";
+  bubble.innerText = line;
 
-  return story;
+  panel.appendChild(img);
+  panel.appendChild(bubble);
+
+  const container = document.getElementById("panelContainer");
+  container.innerHTML = ""; // Clear previous
+  container.appendChild(panel);
 }
 
-function generateLine(hero, realm, item, index) {
-  const lines = [
-    `${hero} lives in the ${realm}, unaware of the ${item} buried deep beneath the sands.`,
-    `A dream calls ${hero} to retrieve the ${item} and restore balance.`,
-    `${hero} hesitates — fear of the unknown coils like a serpent.`,
-    `A masked figure whispers secrets of the ${item} to guide them.`,
-    `${hero} steps into a gate of ink and fire, leaving ${realm} behind.`,
-    `They meet allies — a haunted swordsmith and a floating librarian.`,
-    `A forgotten temple beckons from the mist with echoing chants.`,
-    `A shadow self appears — a version of ${hero} twisted by doubt.`,
-    `Emerging victorious, they grasp the ${item}, which burns with starlight.`,
-    `The sky fractures; ${hero} must return before it all collapses.`,
-    `They face a final riddle, proving their heart worthy of fate.`,
-    `Back in ${realm}, they open the ${item}, releasing light into all corners of the world.`
-  ];
-  return lines[index] || "Mystery deepens...";
+function changeTheme() {
+  generatePanel(); // auto-generate when theme changes
 }
-
-document.getElementById("generate").addEventListener("click", () => {
-  document.getElementById("output").textContent = generateStory();
-});
