@@ -7,19 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🔮 Zodiac Mangazine 🔥</h1>
-    <p>Your Mystic Manga Generator</p>
-  </header>
+  <h1>Zodiac Mangazine: Cosmic Panel Generator 🌌</h1>
 
-  <main>
-    <button id="generate">🎲 Spin the Cosmic Wheel</button>
-    <section id="output"></section>
-  </main>
+  <div class="controls">
+    <button onclick="generatePanel()">✨ Generate Panel</button>
+    <select id="themeSelect" onchange="changeTheme()">
+      <option value="cyberzodiac">CyberZodiac</option>
+      <option value="tarotnoir">Tarot Noir</option>
+      <option value="occultidols">Occult Idol Showdown</option>
+    </select>
+  </div>
 
-  <footer>
-    <p>✨ Powered by Wavelord + ChatGPT ✨</p>
-  </footer>
+  <div id="panelContainer"></div>
 
   <script src="main.js"></script>
 </body>
